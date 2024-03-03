@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class SpikeProjectileLogic : MonoBehaviour, IDamaging
 {
-    [SerializeField] private ParticleSystem onDeathParticle;
     public float projectileSpeed;
     public float projectileDistance;
     public int projectileDamage;
     public float rotationSpeed;
     public Vector3 movementVector;
     private Vector3 startPosition;
+
+    [SerializeField] private ParticleSystem onDeathParticle;
+    [SerializeField] private GameObject audioSource;
+    [SerializeField] private AudioClip audio;
+
     void Awake() 
     {
         startPosition = transform.position;
@@ -19,6 +23,8 @@ public class SpikeProjectileLogic : MonoBehaviour, IDamaging
     {
         if (Vector3.Distance(startPosition,transform.position) > projectileDistance) 
         {
+            UseParticles();
+            UseAudio();
             Destroy(gameObject);
         }
         transform.Rotate(0, 0, rotationSpeed);
@@ -26,16 +32,32 @@ public class SpikeProjectileLogic : MonoBehaviour, IDamaging
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<IPlayer>(out IPlayer target)) 
+        if (collision.TryGetComponent(out IPlayer target)) 
         {
+            UseParticles();
+            UseAudio();
+
             target.TakeDamage(projectileDamage);
+
             Destroy(gameObject);
         }
     }
+
+    private void UseParticles() 
+    {
+        ParticleSystem particle = Instantiate(onDeathParticle, transform.position, transform.rotation);
+        Destroy(particle.gameObject, particle.main.duration);
+    }
+
+    private void UseAudio()
+    {
+        AudioSource sound = Instantiate(audioSource, transform.position, transform.rotation).GetComponent<AudioSource>();
+        sound.clip = audio;
+        sound.Play();
+        Destroy(sound.gameObject, audio.length);
+    }
+
     private void OnDestroy()
     {
-        AudioManager.instance.Play("Hit4");
-        ParticleSystem particle = Instantiate(onDeathParticle,transform.position,transform.rotation);
-        Destroy(particle.gameObject, particle.main.duration);
     }
 }

@@ -10,11 +10,13 @@ public class HealParticleLogic : MonoBehaviour
     [SerializeField] private ParticleSystem onDestroyParticleSystem;
     private GameObject player;
     private Rigidbody2D rb;
+    private AudioSource audioSource;
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void FixedUpdate()
@@ -39,7 +41,7 @@ public class HealParticleLogic : MonoBehaviour
     {
         ParticleSystem particle = Instantiate(onDestroyParticleSystem, transform.position, transform.rotation);
         particle.Play();
-        AudioManager.instance.Play("Exp1");
+        audioSource.Play();
         Destroy(particle.gameObject, particle.main.duration);
     }
 }

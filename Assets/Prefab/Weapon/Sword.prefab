@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 1
-  PunchForce: 10
+  PunchForce: 5
   Sound: Hit2
   Hand: {fileID: 8140247412808210815}
   Trail: {fileID: 7200414198444910066}

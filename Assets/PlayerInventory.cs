@@ -92,4 +92,8 @@ public class PlayerInventory : MonoBehaviour
         pl._weapon = newWeapon;
         IsAwaliablePickUp = true;
     }
+    private void OnDestroy()
+    {
+        InputManager.inputSystem.Player.PickUp.performed -= PickUp_performed;
+    }
 }

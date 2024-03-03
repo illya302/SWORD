@@ -6,9 +6,11 @@ using UnityEngine.AI;
 
 public class SpikeLogic : MonoBehaviour, ICreature, IDamageable
 {
+    [Header("Spike's main settings")]
     [SerializeField] private int healthPoints = 2;
     [SerializeField] private float attackRate;
 
+    [Header("Spike's AI settings")]
     [SerializeField] public float chaseDistance;
     [SerializeField] public float attackDistance;
     [SerializeField] public float scaredDistandce;
@@ -17,27 +19,39 @@ public class SpikeLogic : MonoBehaviour, ICreature, IDamageable
     [SerializeField] public float chasingSpeed;
     [SerializeField] public float defaultSpeed;
 
+    [Header("Spike's projectile settings")]
     [SerializeField] private float projectileSpeed;
     [SerializeField] private float projectileDistance;
     [SerializeField] private int projectileDamage;
     [SerializeField] private float rotationSpeed;
 
+    [Header("Spike's loot settings")]
     [SerializeField] private float heartStartSpeed;
     [SerializeField] private int heartDropChance;
 
     [SerializeField] private float experienceStartSpeed;
     [SerializeField] private int experienceCount;
 
+    [Header("Spike's resources")]
     [SerializeField] private GameObject Exp;
     [SerializeField] private GameObject Heart;
     [SerializeField] private GameObject projectile;
+    [SerializeField] private GameObject onDeathAudioSource;
+
+    [SerializeField] private AudioClip spikeHit;
+    [SerializeField] private AudioClip spikeDeath;
+    [SerializeField] private AudioClip spikeAttack;
 
     private bool IsReayToStrike = true;
     private float timeSinceAttack = 0;
 
+    private bool IsReadyTakeDamage = true;
+    private float timeTakeDamage = 0;
+
     public event Action OnTakeDamage;
     private NavMeshAgent agent;
     private GameObject player;
+    private AudioSource audio;
 
     private void Awake()
     {
@@ -45,17 +59,25 @@ public class SpikeLogic : MonoBehaviour, ICreature, IDamageable
         agent = GetComponent<NavMeshAgent>();
         agent.updateUpAxis = false;
         agent.updateRotation = false;
+        audio = GetComponent<AudioSource>();
     }
 
     public void TakeDamage(int damage)
     {
+        if (!IsReadyTakeDamage)
+            return;
+
+        StartCoroutine(TakeDamageCoolDown());
+
         healthPoints -= damage;
         OnTakeDamage.Invoke();
-        AudioManager.instance.Play("Hit1");
+        audio.clip = spikeHit;
+        audio.Play();
+
         if (healthPoints <= 0) 
         {
             Destroy(gameObject);
-            AudioManager.instance.Play("Explosion");
+            OnDeathAudio();
             GiveExperience(experienceCount);
             GiveHeart();
         }
@@ -65,10 +87,10 @@ public class SpikeLogic : MonoBehaviour, ICreature, IDamageable
     {
         if (IsReayToStrike)
         {
-            IsReayToStrike = false;
             StartCoroutine(Reloading());
 
-            AudioManager.instance.Play("Shoot4");
+            audio.clip = spikeAttack;
+            audio.Play();
 
             Vector3 attackVector = (player.transform.position - transform.position);
             attackVector.Normalize();
@@ -103,9 +125,17 @@ public class SpikeLogic : MonoBehaviour, ICreature, IDamageable
         GameObject exp = Instantiate(Heart, transform.position, transform.rotation);
         exp.GetComponentInChildren<Rigidbody2D>().AddForce(direction * force, ForceMode2D.Impulse);
     }
+    private void OnDeathAudio() 
+    {
+        AudioSource fx = Instantiate(onDeathAudioSource, transform.position, transform.rotation).GetComponent<AudioSource>();
+        fx.clip = spikeDeath;
+        fx.Play();
+        Destroy(fx.gameObject, fx.clip.length);
+    }
 
     private IEnumerator Reloading() 
     {
+        IsReayToStrike = false;
         while (1 / attackRate > timeSinceAttack) 
         {
             timeSinceAttack += Time.deltaTime;
@@ -113,5 +143,20 @@ public class SpikeLogic : MonoBehaviour, ICreature, IDamageable
         }
         timeSinceAttack = 0;
         IsReayToStrike = true;
+    }
+    private IEnumerator TakeDamageCoolDown()
+    {
+        IsReadyTakeDamage = false;
+        while (0.3 > timeTakeDamage)
+        {
+            timeTakeDamage += Time.deltaTime;
+            yield return null;
+        }
+        timeTakeDamage = 0;
+        IsReadyTakeDamage = true;
+    }
+
+    void OnDestroy() 
+    {
     }
 }
