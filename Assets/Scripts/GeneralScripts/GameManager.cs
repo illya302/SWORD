@@ -6,6 +6,10 @@ public class GameManager : MonoBehaviour
 {
     LevelLoader levelLoader;
 
+    public void PauseGame()
+    {
+
+    }
     
     public void LoadLevel(int sceneIndex)
     {
@@ -13,5 +17,10 @@ public class GameManager : MonoBehaviour
             levelLoader = GetComponent<LevelLoader>();
 
         levelLoader.LoadScene(sceneIndex);
+    }
+
+    public void SetTimeScale(float timeScale)
+    {
+        Time.timeScale = timeScale;
     }
 }

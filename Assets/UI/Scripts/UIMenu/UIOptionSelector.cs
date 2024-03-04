@@ -14,6 +14,11 @@ public class UIOptionSelector : MonoBehaviour
     [SerializeField] private RectTransform selectedMenuItem;
     [SerializeField] private float scrollSpeed;
 
+    [Range(0f, 1f)]
+    [SerializeField] float scrollDistance;
+
+    private bool isScrolling;
+
     private void Awake()
     {
         InitializeScroller();
@@ -30,6 +35,11 @@ public class UIOptionSelector : MonoBehaviour
 
     public void ScrollTo(int direction)
     {
+        if (isScrolling)
+        {
+            return;
+        }
+
         int index = menuItems.IndexOf(selectedMenuItem) + direction;
         if (index < 0)
             return;
@@ -46,11 +56,13 @@ public class UIOptionSelector : MonoBehaviour
 
     IEnumerator ScrollCoroutine(int direction)
     {
-        float distance = .5f;
+        float distance = scrollDistance;
         float passedDistance = 0;
 
         while (direction != 0)
         {
+            isScrolling = true;
+
             float passedForFrame = scrollSpeed * Time.deltaTime;
 
             //Debug.Log("Direction -- " + "(" + direction + ")");
@@ -69,6 +81,7 @@ public class UIOptionSelector : MonoBehaviour
                         menuOptionScroller.horizontalNormalizedPosition = roundedValue;
                         Debug.Log("passedDistance -- " + passedDistance);
                         direction = 0;
+                        
                     }
 
                 }
@@ -94,11 +107,11 @@ public class UIOptionSelector : MonoBehaviour
                 else
                     direction = 0;
             }
-
+                
             yield return null;
         }
 
-
+        isScrolling = false;
 
     }
 }
