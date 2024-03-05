@@ -5,11 +5,6 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     LevelLoader levelLoader;
-
-    public void PauseGame()
-    {
-
-    }
     
     public void LoadLevel(int sceneIndex)
     {
