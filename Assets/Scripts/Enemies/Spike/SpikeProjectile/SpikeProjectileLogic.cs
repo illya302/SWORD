@@ -56,8 +56,4 @@ public class SpikeProjectileLogic : MonoBehaviour, IDamaging
         sound.Play();
         Destroy(sound.gameObject, audio.length);
     }
-
-    private void OnDestroy()
-    {
-    }
 }

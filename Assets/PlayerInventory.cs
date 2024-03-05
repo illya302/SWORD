@@ -87,6 +87,10 @@ public class PlayerInventory : MonoBehaviour
             weapon.rotation = Quaternion.Lerp(weapon.rotation, activeWeapon.transform.rotation, Time.deltaTime * 10);
             yield return null;
         }
+        //
+        weapon.position = activeWeapon.transform.position;
+        weapon.rotation = activeWeapon.transform.rotation;
+        //
         weapon.GetComponent<IWeapon>().PickUp();
         weapon.parent = activeWeapon.transform;
         pl._weapon = newWeapon;

@@ -14,11 +14,11 @@ public class Player: MonoBehaviour
     [SerializeField] public int dodgeForce;
     [SerializeField] public float reloadTime;
 
-    private bool IsAvaliableAttack = true;
-    public float currentTime;
-    public float currentDodgeForce;
-    private Coroutine dodgeForceCoroutine;
-    public event Action OnDeath;
+    [HideInInspector] private bool IsAvaliableAttack = true;
+    [HideInInspector] public float currentTime;
+    [HideInInspector] public float currentDodgeForce;
+    [HideInInspector] private Coroutine dodgeForceCoroutine;
+    [HideInInspector] public event Action OnDeath;
 
     private Rigidbody2D rb;
     public IWeapon _weapon;

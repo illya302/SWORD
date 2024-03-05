@@ -10,6 +10,17 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private float NoiseEffectStrength;
     [SerializeField] private float NoiseEffectDecreaseSpeed;
 
+    [Header("Camera Zoom Effect")]
+    [SerializeField] private float ZoomEffectSpeed;
+    [SerializeField] private float ZoomEffectMaxSize;
+    [SerializeField] private float DefaultCameraSize;
+    private Coroutine ZoomEffectCoroutine;
+
+    [Header("Camera Dutch Effect")]
+    [SerializeField] private float DutchEffectSpeed;
+    [SerializeField] private float DutchEffectForce;
+    private Coroutine DutchEffectCoroutine;
+
     [Header("CM Settings")]
     [SerializeField] private Camera camera;
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
@@ -36,5 +47,46 @@ public class CameraManager : MonoBehaviour
         }
         cameraNoise.m_AmplitudeGain = 0;
         cameraNoise.m_FrequencyGain = 0;
+    }
+    public IEnumerator CameraZoomEffect()
+    {
+        float startSize = virtualCamera.m_Lens.OrthographicSize;
+        while (virtualCamera.m_Lens.OrthographicSize < ZoomEffectMaxSize)
+        {
+            float coefficient = 1 - ((virtualCamera.m_Lens.OrthographicSize - startSize)/(ZoomEffectMaxSize - startSize));
+            virtualCamera.m_Lens.OrthographicSize += Time.deltaTime * ZoomEffectSpeed * coefficient;
+            yield return null;
+        }
+        virtualCamera.m_Lens.OrthographicSize = ZoomEffectMaxSize;
+    }
+    public IEnumerator CameraUnzoomEffect()
+    {
+        float startSize = virtualCamera.m_Lens.OrthographicSize;
+        while (virtualCamera.m_Lens.OrthographicSize > DefaultCameraSize)
+        {
+            float coefficient = 1 - ((virtualCamera.m_Lens.OrthographicSize - startSize) / (DefaultCameraSize - startSize));
+            virtualCamera.m_Lens.OrthographicSize -= Time.deltaTime * ZoomEffectSpeed * coefficient;
+            yield return null;
+        }
+        virtualCamera.m_Lens.OrthographicSize = DefaultCameraSize;
+    }
+    private void Update()
+    {
+        CameraZoom();
+    }
+    private void CameraZoom() 
+    {
+        if (InputManager.Instance.GetInputVector() != Vector2.zero)
+        {
+            if (ZoomEffectCoroutine != null)
+                StopCoroutine(ZoomEffectCoroutine);
+            ZoomEffectCoroutine = StartCoroutine(CameraZoomEffect());
+        }
+        else
+        {
+            if (ZoomEffectCoroutine != null)
+                StopCoroutine(ZoomEffectCoroutine);
+            ZoomEffectCoroutine = StartCoroutine(CameraUnzoomEffect());
+        }
     }
 }

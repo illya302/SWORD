@@ -373,7 +373,7 @@ MonoBehaviour:
   healthPoints: 10
   experience: 0
   speed: 15
-  dodgeForce: 5
+  dodgeForce: 3
   reloadTime: 2
   currentTime: 0
   currentDodgeForce: 0
@@ -781,8 +781,8 @@ MonoBehaviour:
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
-  m_ShadowIntensityEnabled: 0
-  m_ShadowIntensity: 0.491
+  m_ShadowIntensityEnabled: 1
+  m_ShadowIntensity: 1
   m_ShadowVolumeIntensityEnabled: 1
   m_ShadowVolumeIntensity: 0.94
   m_LocalBounds:
@@ -1041,6 +1041,7 @@ GameObject:
   - component: {fileID: 4865034573606116660}
   - component: {fileID: 4757133544273818405}
   - component: {fileID: 7815826404950844659}
+  - component: {fileID: 7338633465646809277}
   m_Layer: 5
   m_Name: ReloadStatus
   m_TagString: Untagged
@@ -1144,6 +1145,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 3437807778153143838}
+--- !u!81 &7338633465646809277
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7417396300221762110}
+  m_Enabled: 1
 --- !u!1 &7568012595647065371
 GameObject:
   m_ObjectHideFlags: 0
