@@ -20,17 +20,20 @@ public class RangeWeapon : MonoBehaviour, IRangeWeapon
     }
     void Start()
     {
-        collider.enabled = false;
+        if (collider != null)
+            collider.enabled = false;
     }
     public void Attack(Player s)
     {
         AudioManager.instance.Play(Sound);
-        collider.enabled = true;
+        if (collider != null)
+            collider.enabled = true;
         OnAttack.Invoke();
     }
     private void DisableDamage()
     {
-        collider.enabled = false;
+        if (collider != null)
+            collider.enabled = false;
     }
     public void PickUp()
     {

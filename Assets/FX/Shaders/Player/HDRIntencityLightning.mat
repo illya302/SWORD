@@ -41,7 +41,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Intencity: 140
+    - _Intencity: 240
     - _UseCustomColor: 1
     m_Colors:
     - _Color: {r: 0.006289184, g: 0.808331, b: 1, a: 0}

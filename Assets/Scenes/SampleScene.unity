@@ -656,7 +656,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 547620414991495660, guid: 7ade6860ba47b2042afc15b8fdb411e9, type: 3}
   surface: {fileID: 1650270616}
-  spawnDelay: 2
+  spawnDelay: 1
 --- !u!4 &224139892
 Transform:
   m_ObjectHideFlags: 0
@@ -6350,11 +6350,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3820687730347514700, guid: 5e4040c97b40c2f43877ef6a80b58879, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 4.12
       objectReference: {fileID: 0}
     - target: {fileID: 3820687730347514700, guid: 5e4040c97b40c2f43877ef6a80b58879, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 4.61
       objectReference: {fileID: 0}
     - target: {fileID: 3820687730347514700, guid: 5e4040c97b40c2f43877ef6a80b58879, type: 3}
       propertyPath: m_LocalPosition.z

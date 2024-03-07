@@ -16,7 +16,6 @@ public class LightVisual : MonoBehaviour
     {
         globalLight = GetComponent<Light2D>();
         player = GameObject.Find("Hero").GetComponent<Player>();
-        Debug.Log(player);
     }
     private void Start()
     {

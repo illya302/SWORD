@@ -155,8 +155,4 @@ public class SpikeLogic : MonoBehaviour, ICreature, IDamageable
         timeTakeDamage = 0;
         IsReadyTakeDamage = true;
     }
-
-    void OnDestroy() 
-    {
-    }
 }

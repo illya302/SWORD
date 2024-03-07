@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LightningMagicStaff : RangeWeapon
 {
+    [SerializeField] Collider2D Collider;
     private LightningStrikeScript lightningStrike;
 
     private void Awake()
@@ -11,7 +12,7 @@ public class LightningMagicStaff : RangeWeapon
         lightningStrike = GetComponent<LightningStrikeScript>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        collider = GetComponentInChildren<Collider2D>();
+        collider = Collider;
     }
     private void Start()
     {
@@ -22,13 +23,13 @@ public class LightningMagicStaff : RangeWeapon
     {
         lightningStrike.Attack();
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out IDamageable target) && !collision.TryGetComponent(out IPlayer p) && collider.enabled)
+        if (collision.TryGetComponent(out IDamageable target) && !collision.TryGetComponent(out IPlayer p))
         {
             target.TakeDamage(Damage);
         }
-        if (collider.enabled && collision.transform.TryGetComponent(out Rigidbody2D rb) && collision.tag != "Player")
+        if (collision.transform.TryGetComponent(out Rigidbody2D rb) && collision.tag != "Player")
         {
             Vector2 punch = collision.transform.position - transform.position;
             punch.Normalize();
