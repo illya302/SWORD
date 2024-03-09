@@ -52,6 +52,7 @@ public class SpikeLogic : MonoBehaviour, ICreature, IDamageable
     private NavMeshAgent agent;
     private GameObject player;
     private AudioSource audio;
+    public int lastDamage;
 
     private void Awake()
     {
@@ -69,6 +70,7 @@ public class SpikeLogic : MonoBehaviour, ICreature, IDamageable
 
         StartCoroutine(TakeDamageCoolDown());
 
+        lastDamage = damage;
         healthPoints -= damage;
         OnTakeDamage.Invoke();
         audio.clip = spikeHit;

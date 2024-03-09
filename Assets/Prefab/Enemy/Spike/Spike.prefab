@@ -246,6 +246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onTakeDamageParticleSystem: {fileID: 8990141764359615318, guid: 4f50e2b2e78ab0b45bc2933ad5b377ba, type: 3}
   onDeathDamageParticleSystem: {fileID: 50544467509532285, guid: 083dc44e52f16e840aa74fea79570379, type: 3}
+  onTakeDamageText: {fileID: 8779695787820016041, guid: b3438379fe83d104dae9ee6c56e5f4f4, type: 3}
 --- !u!82 &7702792391215104611
 AudioSource:
   m_ObjectHideFlags: 0
