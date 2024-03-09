@@ -10,7 +10,7 @@ public class Player: MonoBehaviour
 {
     [SerializeField] public int healthPoints;
     [SerializeField] public int experience;
-    [SerializeField] private int speed;
+    [SerializeField] public int speed;
     [SerializeField] public int dodgeForce;
     [SerializeField] public float reloadTime;
 

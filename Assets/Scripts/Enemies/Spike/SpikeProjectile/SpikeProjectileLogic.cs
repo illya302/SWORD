@@ -19,7 +19,7 @@ public class SpikeProjectileLogic : MonoBehaviour, IDamaging
     {
         startPosition = transform.position;
     }    
-    void Update() 
+    void FixedUpdate() 
     {
         if (Vector3.Distance(startPosition,transform.position) > projectileDistance) 
         {
@@ -28,7 +28,7 @@ public class SpikeProjectileLogic : MonoBehaviour, IDamaging
             Destroy(gameObject);
         }
         transform.Rotate(0, 0, rotationSpeed);
-        transform.position += movementVector * projectileSpeed;
+        transform.position += movementVector * projectileSpeed * 5;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
