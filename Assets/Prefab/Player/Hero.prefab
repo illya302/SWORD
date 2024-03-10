@@ -374,6 +374,7 @@ MonoBehaviour:
   experience: 0
   speed: 15
   dodgeForce: 3
+  defaultReloadTime: 2
   reloadTime: 2
   currentTime: 0
   currentDodgeForce: 0
@@ -642,8 +643,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0047377944, y: 2.1120307}
-  m_Size: {x: 1.2296199, y: 3.096581}
+  m_Offset: {x: -0.0047377944, y: 1.4293772}
+  m_Size: {x: 1.2296199, y: 2.9198759}
   m_Direction: 0
 --- !u!50 &9013760894551781486
 Rigidbody2D:

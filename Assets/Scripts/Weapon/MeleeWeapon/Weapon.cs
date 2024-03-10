@@ -8,11 +8,17 @@ public class Weapon : MonoBehaviour, IMeleeWeapon
     [SerializeField] protected int Damage;
     [SerializeField] protected int PunchForce;
     [SerializeField] protected string Sound;
+    [SerializeField] protected Vector3 idleAngle = Vector3.zero;
+    [SerializeField] protected float attackSpeedModifier = 1f;
     [SerializeField] protected GameObject Hand;
     [SerializeField] protected TrailRenderer Trail;
     protected Animator animator;
     protected new Collider2D collider;
     protected SpriteRenderer spriteRenderer;
+
+    public Vector3 IdleAngle { get => idleAngle; set => idleAngle = value; }
+    public float AttackSpeedModifier { get => attackSpeedModifier; set => attackSpeedModifier = value; }
+
     public event Action OnAttack;
     void Awake()
     {

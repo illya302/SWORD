@@ -307,10 +307,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 072a7535a9d906d43b561ef6b37b2cdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 0
+  projectileSpeed: 1
   projectileDistance: 10
   projectileDamage: 1
-  rotationSpeed: 2
+  rotationSpeed: 8
   movementVector: {x: 0, y: 0, z: 0}
   onDeathParticle: {fileID: 1223973673175170252, guid: ec8066d105d33484f9ad188847495576, type: 3}
   audioSource: {fileID: 6017665427717836978, guid: b476935668b2df14e8807df4535d544b, type: 3}

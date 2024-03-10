@@ -33,6 +33,7 @@ public class UISliderScript : MonoBehaviour
     {
         if (player.currentTime != 0)
         {
+            reloadStatus.maxValue = player.reloadTime;
             reloadStatus.gameObject.SetActive(true);
             reloadStatus.value = player.currentTime;
         }

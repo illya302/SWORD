@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class PlayerInventory : MonoBehaviour
 {
@@ -38,26 +39,64 @@ public class PlayerInventory : MonoBehaviour
             return;
         }
 
+        List<Collider2D> weapons = new List<Collider2D>();
+
         foreach (Collider2D collider in hitColliders)
         {
             if (collider.name == WEAPON_PICK_UP_CONTAINER && collider.transform.parent.gameObject != playerWeapon.gameObject)
             {
-                playerWeapon.transform.parent = null;
-                playerWeapon.transform.position = activeWeapon.transform.position;
-                playerWeapon.transform.rotation = activeWeapon.transform.rotation;
-
-                if (pickUp != null)
-                    StopCoroutine(pickUp);
-                if (dropDown != null)
-                    StopCoroutine(dropDown);
-
-                pickUp = StartCoroutine(DropWeapon(playerWeapon.transform));
-                dropDown = StartCoroutine(PickUpWeapon(collider.transform.parent.transform));
-        
-                break;
+                weapons.Add(collider);
             }
         }
+
+        weapons = weapons.OrderBy(v => Vector3.Distance(transform.position, v.transform.position)).ToList();
+
+        if (weapons.Count != 0) 
+        {
+            playerWeapon.transform.parent = null;
+            playerWeapon.transform.position = activeWeapon.transform.position;
+            playerWeapon.transform.rotation = activeWeapon.transform.rotation;
+
+            if (pickUp != null)
+                StopCoroutine(pickUp);
+            if (dropDown != null)
+                StopCoroutine(dropDown);
+
+            pickUp = StartCoroutine(DropWeapon(playerWeapon.transform));
+            dropDown = StartCoroutine(PickUpWeapon(weapons[0].transform.parent.transform));
+        }
     }
+    //private void PickUp_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    //{
+    //    MonoBehaviour playerWeapon = pl._weapon as MonoBehaviour;
+    //    Vector2 position = new Vector2(transform.position.x, transform.position.y);
+    //    Collider2D[] hitColliders = Physics2D.OverlapAreaAll(position, position + Vector2.one * 5);
+
+    //    if (!IsAwaliablePickUp)
+    //    {
+    //        return;
+    //    }
+
+    //    foreach (Collider2D collider in hitColliders)
+    //    {
+    //        if (collider.name == WEAPON_PICK_UP_CONTAINER && collider.transform.parent.gameObject != playerWeapon.gameObject)
+    //        {
+    //            playerWeapon.transform.parent = null;
+    //            playerWeapon.transform.position = activeWeapon.transform.position;
+    //            playerWeapon.transform.rotation = activeWeapon.transform.rotation;
+
+    //            if (pickUp != null)
+    //                StopCoroutine(pickUp);
+    //            if (dropDown != null)
+    //                StopCoroutine(dropDown);
+
+    //            pickUp = StartCoroutine(DropWeapon(playerWeapon.transform));
+    //            dropDown = StartCoroutine(PickUpWeapon(collider.transform.parent.transform));
+
+    //            break;
+    //        }
+    //    }
+    //}
     private IEnumerator DropWeapon(Transform weapon)
     {
         Vector2 aimingVector = InputManager.Instance.GetAimVector();
@@ -80,16 +119,20 @@ public class PlayerInventory : MonoBehaviour
         IsAwaliablePickUp = false;
         IWeapon newWeapon = weapon.GetComponent<IWeapon>();
         float currentTime = 0;
+        Quaternion rotation = activeWeapon.transform.rotation;
+        rotation *= Quaternion.Euler(new Vector3(1, 0, 0) * newWeapon.IdleAngle.x);
+        rotation *= Quaternion.Euler(new Vector3(0, 1, 0) * newWeapon.IdleAngle.y);
+        rotation *= Quaternion.Euler(new Vector3(0, 0, 1) * newWeapon.IdleAngle.z);
         while (0.2 > currentTime)
         {
             currentTime += Time.deltaTime;
             weapon.position = Vector3.Lerp(weapon.position, activeWeapon.transform.position, Time.deltaTime * 10);
-            weapon.rotation = Quaternion.Lerp(weapon.rotation, activeWeapon.transform.rotation, Time.deltaTime * 10);
+            weapon.rotation = Quaternion.Lerp(weapon.rotation, rotation, Time.deltaTime * 10);
             yield return null;
         }
         //
         weapon.position = activeWeapon.transform.position;
-        weapon.rotation = activeWeapon.transform.rotation;
+        weapon.rotation = rotation;
         //
         weapon.GetComponent<IWeapon>().PickUp();
         weapon.parent = activeWeapon.transform;

@@ -12,7 +12,9 @@ public class Player: MonoBehaviour
     [SerializeField] public int experience;
     [SerializeField] public int speed;
     [SerializeField] public int dodgeForce;
-    [SerializeField] public float reloadTime;
+    [SerializeField] public int defaultReloadTime;
+    [HideInInspector] public float reloadTime;
+
 
     [HideInInspector] private bool IsAvaliableAttack = true;
     [HideInInspector] public float currentTime;
@@ -57,7 +59,7 @@ public class Player: MonoBehaviour
         Vector2 aimVector = InputManager.Instance.GetAimVector();
         rb.AddForce(aimVector*currentDodgeForce, ForceMode2D.Impulse);
         
-        if (currentDodgeForce > dodgeForce*0.1)
+        if (currentDodgeForce > dodgeForce*0.2)
         {
             AudioManager.instance.Play("Dodge1");
         }
@@ -94,6 +96,7 @@ public class Player: MonoBehaviour
 
     private IEnumerator AttackCooldown() 
     {
+        reloadTime = defaultReloadTime * _weapon.AttackSpeedModifier;
         IsAvaliableAttack = false;
         while (currentTime < reloadTime) 
         { 

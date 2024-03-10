@@ -28,7 +28,7 @@ public class SpikeProjectileLogic : MonoBehaviour, IDamaging
             Destroy(gameObject);
         }
         transform.Rotate(0, 0, rotationSpeed);
-        transform.position += movementVector * projectileSpeed * 5;
+        transform.position += movementVector * projectileSpeed * 3;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
