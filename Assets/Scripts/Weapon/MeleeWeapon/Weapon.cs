@@ -50,7 +50,8 @@ public class Weapon : MonoBehaviour, IMeleeWeapon
     {
         Hand.SetActive(false);
         animator.enabled = false;
-        Trail.enabled = false;
+        if (Trail != null)
+            Trail.enabled = false;
         spriteRenderer.sortingOrder = 0;
     }
 }

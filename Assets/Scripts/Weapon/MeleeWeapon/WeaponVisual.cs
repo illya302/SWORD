@@ -19,17 +19,20 @@ public class WeaponVisual : MonoBehaviour
     private void Start()
     {
         weapon.OnAttack += StartWeaponAttack;
-        trailRender.enabled = false;
+        if(trailRender != null)
+            trailRender.enabled = false;
     }
 
     private void StartWeaponAttack()
     {
         animator.SetBool(ATTACK, true);
-        trailRender.enabled = true;
+        if (trailRender != null)
+            trailRender.enabled = true;
     }
     private void StopWeaponAttack()
     {
         animator.SetBool(ATTACK, false);
-        trailRender.enabled = false;
+        if (trailRender != null)
+            trailRender.enabled = false;
     }
 }

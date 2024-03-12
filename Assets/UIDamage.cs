@@ -19,7 +19,7 @@ public class UIDamage : MonoBehaviour
     {
         Vector3 movementVector =  new Vector3 (Random.Range(-0.8f,0.8f), 1, 0);
         movementVector.Normalize();
-        rb.AddForce(movementVector * 3f, ForceMode2D.Impulse);
+        rb.AddForce(movementVector * 15f, ForceMode2D.Impulse);
         while (tpmText.alpha > 0) 
         {
             tpmText.alpha -= Time.deltaTime;
