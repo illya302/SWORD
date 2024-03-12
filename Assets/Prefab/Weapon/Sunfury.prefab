@@ -392,6 +392,7 @@ MonoBehaviour:
   attackSpeedModifier: 1
   Hand: {fileID: 3323228645315743876}
   Trail: {fileID: 0}
+  Fire: {fileID: 8983023173705502652, guid: 4a5a60174b7d4a94c8366e5f9cf98e39, type: 3}
 --- !u!114 &6864748099680982336
 MonoBehaviour:
   m_ObjectHideFlags: 0

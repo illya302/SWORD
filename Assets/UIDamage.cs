@@ -25,6 +25,6 @@ public class UIDamage : MonoBehaviour
             tpmText.alpha -= Time.deltaTime;
             yield return null;
         }
-        Destroy(gameObject);
+        Destroy(transform.parent.gameObject);
     }
 }

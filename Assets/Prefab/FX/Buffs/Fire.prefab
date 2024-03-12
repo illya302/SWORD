@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5287371934382509629}
   - component: {fileID: 4308910669352880542}
   - component: {fileID: 1256545834086465141}
+  - component: {fileID: 4657622467966566187}
   m_Layer: 0
   m_Name: Fire
   m_TagString: Untagged
@@ -58,7 +59,7 @@ VisualEffect:
       m_Array:
       - m_Value: {x: 1, y: 1, z: 0}
         m_Name: ObjectSize
-        m_Overridden: 0
+        m_Overridden: 1
     m_Vector4f:
       m_Array: []
     m_Uint:
@@ -127,3 +128,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01bb72653dbafde42857eb540e6039ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1
+  quantity: 2
+  interval: 1
+  firet: {fileID: 8983023173705502652}
+--- !u!58 &4657622467966566187
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8983023173705502652}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.6

@@ -5,13 +5,15 @@ using UnityEngine;
 
 public class SunFury : Weapon
 {
-    [SerializeField] private GameObject flameEffect;
+    [SerializeField] private GameObject Fire;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out IDamageable target) && !collision.TryGetComponent(out IPlayer p) && collider.enabled) 
+        if (collision.TryGetComponent(out IDamageable iDamageable) && !collision.TryGetComponent(out IPlayer p) && collider.enabled) 
         {
-            target.TakeDamage(Damage);
-            BuffManager.Instance.FlameBuff(target, 1, 2, 1f, flameEffect);
+            var target = iDamageable as MonoBehaviour;
+            iDamageable.TakeDamage(Damage);
+            Instantiate(Fire, target.transform);
+            //BuffManager.Instance.FlameBuff(target, 1, 2, 1f, flameEffect);
         }
         if (collider.enabled && collision.transform.TryGetComponent(out Rigidbody2D rb) && collision.tag != "Player") 
         {
