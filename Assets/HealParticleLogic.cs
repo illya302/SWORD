@@ -36,6 +36,12 @@ public class HealParticleLogic : MonoBehaviour
             UseOnDestroyParticles();
             Destroy(gameObject);
         }
+        if (collision.TryGetComponent(out ThiefLogic thief)) 
+        {
+            thief.TakeHeal(healthPointAmount);
+            UseOnDestroyParticles();
+            Destroy(gameObject);
+        }
     }
     private void UseOnDestroyParticles()
     {

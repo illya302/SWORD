@@ -90,6 +90,22 @@ public class Player: MonoBehaviour
         Vector2 movementVector = InputManager.Instance.GetInputVector();
 
         transform.position += new Vector3(movementVector.x, movementVector.y, transform.position.z) * speed * Time.deltaTime;
+
+        //Debug.Log(Vector3.Magnitude(new Vector3(movementVector.x, movementVector.y, transform.position.z) * speed));
+
+        //if (movementVector != Vector2.zero)
+        //{
+        //    rb.AddForce(movementVector * 5, ForceMode2D.Force);
+        //    if (rb.velocity.magnitude > speed)
+        //    {
+        //        rb.velocity = rb.velocity.normalized * speed;
+        //    }
+        //}
+        //else 
+        //{
+        //    rb.AddForce(movementVector * -5, ForceMode2D.Force);
+        //}
+
         //rb.AddForce(movementVector * speed, ForceMode2D.Force); speed 1
         //rb.MovePosition(transform.position += new Vector3(movementVector.x, movementVector.y, transform.position.z) * speed * Time.deltaTime);
     }

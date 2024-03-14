@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpikeProjectileLogic : MonoBehaviour, IDamaging
+public class ProjectileLogic : MonoBehaviour, IDamaging
 {
     public float projectileSpeed;
     public float projectileDistance;

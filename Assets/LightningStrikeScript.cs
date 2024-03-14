@@ -82,7 +82,7 @@ public class LightningStrikeScript : MonoBehaviour
 
         SetMagicTargetPos(endPosition);
 
-        Collider2D[] hitColliders = Physics2D.OverlapAreaAll(endPosition, endPosition + new Vector3(1,1,0) * lightningJumpDistance);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(endPosition, lightningJumpDistance);
         List<Collider2D> colliders = new List<Collider2D>();
         foreach (Collider2D collider in hitColliders) 
         {

@@ -34,6 +34,12 @@ public class ExpParticleLogic : MonoBehaviour
             UseParticles();
             Destroy(gameObject);
         }
+        if (collision.TryGetComponent(out ThiefLogic thief))
+        {
+            thief.TakeExperience(experienceAmount);
+            UseParticles();
+            Destroy(gameObject);
+        }
     }
     private void UseParticles() 
     {

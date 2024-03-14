@@ -131,7 +131,6 @@ MonoBehaviour:
   damage: 1
   quantity: 2
   interval: 1
-  firet: {fileID: 8983023173705502652}
 --- !u!58 &4657622467966566187
 CircleCollider2D:
   m_ObjectHideFlags: 0
