@@ -551,7 +551,9 @@ TextureImporter:
     indices: 
     edges: []
     weights: []
-    secondaryTextures: []
+    secondaryTextures:
+    - texture: {fileID: 2800000, guid: bc8cc90dcd854c24b9216d0574f4ef45, type: 3}
+      name: _NormalMap
     nameFileIdTable:
       Flora Template_0: 1595535458
       Flora Template_1: 960929704

@@ -26,10 +26,10 @@ public class SpikeVisual : MonoBehaviour
         UseDamageText();
     }
 
-    private void UseDamageText() 
+    private void UseDamageText()
     {
         onTakeDamageText.GetComponentInChildren<UIDamage>().damage = -spikeLogic.lastDamage;
-        Instantiate(onTakeDamageText, transform.position + new Vector3(0,4,0), transform.rotation);
+        Instantiate(onTakeDamageText, transform.position + new Vector3(0, 4, 0), transform.rotation);
     }
 
     private void OnDestroy()

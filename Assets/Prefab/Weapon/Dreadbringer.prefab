@@ -359,7 +359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 169cf4d4d4d75a64bac09ac5b14e4d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 2
+  Damage: 3
   PunchForce: 10
   Sound: Explosion
   idleAngle: {x: 0, y: 0, z: 64}

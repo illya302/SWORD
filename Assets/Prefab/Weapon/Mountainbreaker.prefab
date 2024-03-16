@@ -326,11 +326,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 169cf4d4d4d75a64bac09ac5b14e4d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 2
+  Damage: 5
   PunchForce: 20
   Sound: Explosion
   idleAngle: {x: 0, y: 0, z: 114.966}
-  attackSpeedModifier: 1.5
+  attackSpeedModifier: 2
   Hand: {fileID: 9211680511529935201}
   Trail: {fileID: 3621308036170788671}
 --- !u!114 &310028882228138764

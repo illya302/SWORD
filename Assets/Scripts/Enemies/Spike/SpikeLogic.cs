@@ -109,7 +109,7 @@ public class SpikeLogic : MonoBehaviour, ICreature
     {
         for (int i = 0; i < count; i++) 
         {
-            Vector2 direction = new Vector2(UnityEngine.Random.Range(-1,1), UnityEngine.Random.Range(-1, 1));
+            Vector2 direction = new Vector2(UnityEngine.Random.Range(-1f,1f), UnityEngine.Random.Range(-1f, 1f));
             direction.Normalize();
             float force = UnityEngine.Random.Range(10, experienceStartSpeed);
             GameObject exp = Instantiate(Exp, transform.position, transform.rotation);
@@ -121,7 +121,7 @@ public class SpikeLogic : MonoBehaviour, ICreature
         if (UnityEngine.Random.Range(0, 100) > heartDropChance)
             return;
   
-        Vector2 direction = new Vector2(UnityEngine.Random.Range(-1, 1), UnityEngine.Random.Range(-1, 1));
+        Vector2 direction = new Vector2(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f));
         direction.Normalize();
         float force = UnityEngine.Random.Range(5, heartStartSpeed);
         GameObject exp = Instantiate(Heart, transform.position, transform.rotation);

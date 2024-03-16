@@ -31,14 +31,16 @@ public class ThiefLooting : StateMachineBehaviour
     {
         if (Vector3.Distance(thief.transform.position, player.transform.position) < scaredDistandce)
         {
+            navMeshAgent.ResetPath();
             animator.SetBool("RunAway", true);
         }
-        if (thiefLogic.lootTarget != null)
+        else if (thiefLogic.lootTarget != null)
         {
             navMeshAgent.SetDestination(thiefLogic.lootTarget.transform.position);
         }
-        else 
+        else if ((thiefLogic.lootTarget == null))
         {
+            navMeshAgent.ResetPath();
             animator.SetBool("Looting",false);
         }
     }

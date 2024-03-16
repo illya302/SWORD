@@ -10,9 +10,9 @@ public class Player: MonoBehaviour
 {
     [SerializeField] public int healthPoints;
     [SerializeField] public int experience;
-    [SerializeField] public int speed;
+    [SerializeField] public float speed;
     [SerializeField] public int dodgeForce;
-    [SerializeField] public int defaultReloadTime;
+    [SerializeField] public float defaultReloadTime;
     [HideInInspector] public float reloadTime;
 
 
@@ -21,6 +21,7 @@ public class Player: MonoBehaviour
     [HideInInspector] public float currentDodgeForce;
     [HideInInspector] private Coroutine dodgeForceCoroutine;
     [HideInInspector] public event Action OnDeath;
+    [HideInInspector] public event Action OnTakeDamage;
 
     private Rigidbody2D rb;
     public IWeapon _weapon;
@@ -108,6 +109,18 @@ public class Player: MonoBehaviour
 
         //rb.AddForce(movementVector * speed, ForceMode2D.Force); speed 1
         //rb.MovePosition(transform.position += new Vector3(movementVector.x, movementVector.y, transform.position.z) * speed * Time.deltaTime);
+    }
+
+    //Temporary upgrade system
+    public void TakeExperience(int i)
+    {
+        experience += i;
+        for (int d = 0; d < i; d++) 
+        {
+            speed += 0.01f;
+            if (defaultReloadTime > 0.5f)
+                defaultReloadTime -= 0.01f;
+        }
     }
 
     private IEnumerator AttackCooldown() 

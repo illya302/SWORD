@@ -26,6 +26,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
     private CinemachineBasicMultiChannelPerlin cameraNoise;
     public static CameraManager Instance;
+    private PlayerHp player;
 
     private void Awake()
     {
@@ -33,6 +34,17 @@ public class CameraManager : MonoBehaviour
         virtualCamera = GetComponent<CinemachineVirtualCamera>();
         camera = Camera.main;
         cameraNoise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        player = GameObject.Find("Hero").GetComponentInChildren<PlayerHp>();
+    }
+
+    private void Start()
+    {
+        player.OnTakeDamage += Player_OnTakeDamage;
+    }
+
+    private void Player_OnTakeDamage()
+    {
+        StartCoroutine(CameraNoiseEffect());
     }
 
     public IEnumerator CameraNoiseEffect()

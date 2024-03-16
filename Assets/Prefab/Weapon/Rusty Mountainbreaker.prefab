@@ -363,7 +363,7 @@ MonoBehaviour:
   PunchForce: 20
   Sound: Explosion
   idleAngle: {x: 0, y: 0, z: 114.966}
-  attackSpeedModifier: 1.5
+  attackSpeedModifier: 2
   Hand: {fileID: 2800926857035518176}
   Trail: {fileID: 1067982789812975242}
 --- !u!114 &1519201700136207498

@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Experimental.VFX;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.VFX;
 
 public class FireScript : MonoBehaviour
@@ -21,12 +22,14 @@ public class FireScript : MonoBehaviour
     private SpriteRenderer parentSpriteRenderer;
     private VisualEffect effect;
     private Collider2D collider;
+    private Light2D light;
     private IDamageable parent;
     private void Awake()
     {
         parentSpriteRenderer = GetComponentInParent<SpriteRenderer>();
         effect = GetComponent<VisualEffect>();
         collider = GetComponent<Collider2D>();
+        light = GetComponentInChildren<Light2D>();
         parent = GetComponentInParent<IDamageable>();
     }
     private void Start()
@@ -53,6 +56,16 @@ public class FireScript : MonoBehaviour
             fire.transform.position = target.transform.position;
         }
     }
+
+    private IEnumerator OffLight() 
+    {
+        while (light.intensity > 0) 
+        {
+            light.intensity -= Time.deltaTime * 1.8f;
+            yield return null;
+        }
+    }
+
     private IEnumerator Fire()
     {
         while (thisQuantity > 0)
@@ -75,6 +88,7 @@ public class FireScript : MonoBehaviour
             IsAvaliableToExpand = true;
         }
         effect.Stop();
+        StartCoroutine(OffLight());
         Destroy(gameObject,0.6f);
     }
 }

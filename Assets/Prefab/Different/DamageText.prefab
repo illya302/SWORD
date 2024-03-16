@@ -94,13 +94,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 1300
-  m_fontSizeBase: 1300
+  m_fontSize: 1700
+  m_fontSizeBase: 1700
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 9
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64714c8a9dc17174d8fba092d34b8c76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: -1
+  damage: -5
 --- !u!1 &8779695787820016041
 GameObject:
   m_ObjectHideFlags: 0

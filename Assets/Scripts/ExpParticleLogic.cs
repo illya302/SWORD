@@ -30,7 +30,8 @@ public class ExpParticleLogic : MonoBehaviour
     {
         if (collision.TryGetComponent(out Player pl)) 
         {
-            pl.experience += experienceAmount;
+            //pl.experience += experienceAmount;
+            pl.TakeExperience(experienceAmount);
             UseParticles();
             Destroy(gameObject);
         }
