@@ -265,11 +265,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2540887059815929444}
   - component: {fileID: 7802542816820908213}
-  - component: {fileID: 1603369201587355473}
-  - component: {fileID: 1519201700136207498}
   - component: {fileID: 4243508570485196917}
   - component: {fileID: 7961706435911404803}
   - component: {fileID: 3166711972162700777}
+  - component: {fileID: 654006666444601420}
+  - component: {fileID: 9193682706643821681}
   m_Layer: 0
   m_Name: Rusty Mountainbreaker
   m_TagString: Untagged
@@ -347,37 +347,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1603369201587355473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4726354475948739955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 169cf4d4d4d75a64bac09ac5b14e4d6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damage: 2
-  PunchForce: 20
-  Sound: Explosion
-  idleAngle: {x: 0, y: 0, z: 114.966}
-  attackSpeedModifier: 2
-  Hand: {fileID: 2800926857035518176}
-  Trail: {fileID: 1067982789812975242}
---- !u!114 &1519201700136207498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4726354475948739955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73ccbc8f5ff96b4448e919f982433e7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &4243508570485196917
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -471,6 +440,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &654006666444601420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4726354475948739955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ceba861d92bf9418c9652bcb864c59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 2
+  PunchForce: 20
+  Sound: Explosion
+  idleAngle: {x: 0, y: 0, z: 114.996}
+  attackSpeedModifier: 2
+  Hand: {fileID: 2800926857035518176}
+  Trail: {fileID: 1067982789812975242}
+--- !u!114 &9193682706643821681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4726354475948739955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c97675a40a1a1bd4c9b419ac8972dccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4929002817975752288
 PrefabInstance:
   m_ObjectHideFlags: 0

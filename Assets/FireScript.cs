@@ -43,7 +43,15 @@ public class FireScript : MonoBehaviour
             transform.position += new Vector3(0, parentSpriteRenderer.bounds.size.y / 2, 0);
         }
         StartCoroutine(Fire());
+        parent.OnDeath += Parent_OnDeath;
     }
+
+    private void Parent_OnDeath()
+    {
+        if (this != null)
+            transform.parent = null;
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (!IsAvaliableToExpand)
@@ -73,22 +81,27 @@ public class FireScript : MonoBehaviour
             var currentTime = thisInterval;
             while (currentTime > 0)
             {
+                if (transform.parent == null)
+                    break;
                 currentTime -= Time.deltaTime;
                 yield return null;
             }
-            if (parent != null)
-            {
-                parent.TakeDamage(thisDamage);
-                thisQuantity -= 1;
-            }
-            else
-            {
+            if (transform.parent == null)
                 break;
-            }
+            parent.TakeDamage(thisDamage);
+            thisQuantity -= 1;
             IsAvaliableToExpand = true;
         }
-        effect.Stop();
         StartCoroutine(OffLight());
-        Destroy(gameObject,0.6f);
+        StartCoroutine(StopEffect(effect));
+    }
+    private IEnumerator StopEffect(VisualEffect effect)
+    {
+        effect.Stop();
+        while (effect.aliveParticleCount > 0)
+        {
+            yield return null;
+        }
+        Destroy(effect.gameObject);
     }
 }

@@ -48,7 +48,9 @@ public class ThiefRunAway : StateMachineBehaviour
         }
         if (distance < scaredDistance)
         {
-            navMeshAgent.SetDestination(-1 * (player.transform.position - animator.transform.position) * 10);
+            Vector3 destination = -(player.transform.position - animator.transform.position);
+            destination.Normalize();
+            navMeshAgent.SetDestination(animator.transform.position + destination * 5);
         }
         else if (distance > chaseDistance && allWantedLoot.Count != 0 && Vector3.Distance(thief.transform.position, thiefLogic.lootTarget.transform.position) < lootingDistance)
         {

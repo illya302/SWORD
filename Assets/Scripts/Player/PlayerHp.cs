@@ -8,6 +8,7 @@ public class PlayerHp : MonoBehaviour, IPlayer
 {
     private Player player;
     public event Action OnTakeDamage;
+    public event Action OnDeath;
     void Awake() 
     {
         player = GetComponentInParent<Player>();

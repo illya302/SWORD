@@ -49,6 +49,7 @@ public class SpikeLogic : MonoBehaviour, ICreature
     private float timeTakeDamage = 0;
 
     public event Action OnTakeDamage;
+    public event Action OnDeath;
     private NavMeshAgent agent;
     private GameObject player;
     private AudioSource audio;
@@ -78,6 +79,7 @@ public class SpikeLogic : MonoBehaviour, ICreature
 
         if (healthPoints <= 0) 
         {
+            OnDeath?.Invoke();
             Destroy(gameObject);
             OnDeathAudio();
             GiveExperience(experienceCount);

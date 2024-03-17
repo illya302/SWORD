@@ -62,6 +62,7 @@ public class ThiefLogic : MonoBehaviour, ICreature
 
     public event Action OnTakeDamage;
     public event Action OnTakeExp;
+    public event Action OnDeath;
     private NavMeshAgent agent;
     private GameObject player;
     private AudioSource audio;
@@ -102,6 +103,7 @@ public class ThiefLogic : MonoBehaviour, ICreature
 
         if (healthPoints <= 0)
         {
+            OnDeath?.Invoke();
             Destroy(gameObject);
             OnDeathAudio();
             GiveExperience(experienceCount);
@@ -157,8 +159,6 @@ public class ThiefLogic : MonoBehaviour, ICreature
     {
         for (int i = 0; i < count; i++)
         {
-            Debug.Log(UnityEngine.Random.Range(-1f, 1f));
-            Debug.Log(UnityEngine.Random.Range(-1f, 1f));
             Vector2 direction = new Vector2(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f));
             direction.Normalize();
             float force = UnityEngine.Random.Range(10, experienceStartSpeed);

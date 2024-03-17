@@ -155,11 +155,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5276907649520755018}
   - component: {fileID: 5562863785158778517}
-  - component: {fileID: 4274684770327477943}
-  - component: {fileID: 3015511842328105235}
   - component: {fileID: 2294117270686274379}
   - component: {fileID: 2585851594032704757}
   - component: {fileID: 2699151667860331914}
+  - component: {fileID: 6571677090388951786}
+  - component: {fileID: 148701594741579325}
   m_Layer: 0
   m_Name: Rapier
   m_TagString: Untagged
@@ -237,37 +237,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4274684770327477943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4053237810662368468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 169cf4d4d4d75a64bac09ac5b14e4d6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damage: 1
-  PunchForce: 3
-  Sound: Explosion
-  idleAngle: {x: 0, y: 0, z: -50}
-  attackSpeedModifier: 0.4
-  Hand: {fileID: 402724760065285396}
-  Trail: {fileID: 2210494120810485527}
---- !u!114 &3015511842328105235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4053237810662368468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73ccbc8f5ff96b4448e919f982433e7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &2294117270686274379
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -361,6 +330,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6571677090388951786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4053237810662368468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed3b7938d060d2549bdd1049d07f1754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 1
+  PunchForce: 3
+  Sound: Explosion
+  idleAngle: {x: 0, y: 0, z: -50}
+  attackSpeedModifier: 0.4
+  Hand: {fileID: 402724760065285396}
+  Trail: {fileID: 2210494120810485527}
+--- !u!114 &148701594741579325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4053237810662368468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8ac843a0df71a94383b8adae2e64f84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5596938718965828292
 GameObject:
   m_ObjectHideFlags: 0

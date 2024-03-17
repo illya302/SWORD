@@ -35,7 +35,9 @@ public class SpikeRunAway : StateMachineBehaviour
         float distance = Vector3.Distance(player.transform.position, animator.transform.position);
         if (distance < scaredDistance)
         {
-            navMeshAgent.SetDestination(-1 * (player.transform.position - animator.transform.position) * 10);
+            Vector3 destination = -(player.transform.position - animator.transform.position);
+            destination.Normalize();
+            navMeshAgent.SetDestination(animator.transform.position + destination * 5);
         }
         else if (distance > scaredDistance && distance < attackDistance)
         {
