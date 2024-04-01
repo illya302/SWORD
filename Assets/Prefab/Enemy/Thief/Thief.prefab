@@ -334,6 +334,7 @@ MonoBehaviour:
   thiefHit: {fileID: 8300000, guid: 91cf149dc4e9f0f448aacaf6b05382a2, type: 3}
   thiefDeath: {fileID: 8300000, guid: 5f0b28a7317157a4bbd594d9e518bc8d, type: 3}
   thiefAttack: {fileID: 8300000, guid: c9bb549620c4b55488cd837e2ff5cec2, type: 3}
+  thiefSteal: {fileID: 8300000, guid: c5fac4b7e98bebc4b97e96560bc5714a, type: 3}
   lastDamage: 0
 --- !u!114 &6818921778888741562
 MonoBehaviour:

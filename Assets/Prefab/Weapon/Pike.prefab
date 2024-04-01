@@ -199,7 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 1
   PunchForce: 5
-  Sound: Explosion
+  Sound: Pike
   idleAngle: {x: 0, y: 0, z: -90}
   attackSpeedModifier: 0.6
   Hand: {fileID: 3217098157579211611}

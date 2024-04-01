@@ -40,17 +40,18 @@ public class UpgradeManager : MonoBehaviour
             GameObject gameObj = new GameObject();
             gameObj.name = "UpgradeManager";
             instance = gameObj.AddComponent<UpgradeManager>();
-            SetupUpgradeManager();
+            instance.SetupUpgradeManager();
             DontDestroyOnLoad(gameObj);
         }
     }
 
-    private static void SetupUpgradeManager()
+    private void SetupUpgradeManager()
     {
         player = GameObject.Find("Hero").GetComponent<Player>();
+        Debug.Log(player);
     }
 
-    public static bool UpgradePlayer(Upgrade upgrade) 
+    public bool UpgradePlayer(Upgrade upgrade) 
     {
         if (upgrade._price > player.experience)
         {
@@ -70,10 +71,10 @@ public class UpgradeManager : MonoBehaviour
                 player.reloadTime -= upgrade._value;
                 break;
             case Upgrade.UpgradeType.DodgeForce:
-                player.dodgeForce += (int)upgrade._value;
+                player.dodgeForce += upgrade._value;
                 break;
             case Upgrade.UpgradeType.HeroSpeed:
-                player.speed += (int)upgrade._value;
+                player.speed += upgrade._value;
                 break;
         }
         return true;

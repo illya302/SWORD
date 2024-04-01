@@ -32,21 +32,22 @@ public class ExpParticleLogic : MonoBehaviour
         {
             //pl.experience += experienceAmount;
             pl.TakeExperience(experienceAmount);
-            UseParticles();
+            UseParticles(true);
             Destroy(gameObject);
         }
         if (collision.TryGetComponent(out ThiefLogic thief))
         {
             thief.TakeExperience(experienceAmount);
-            UseParticles();
+            UseParticles(false);
             Destroy(gameObject);
         }
     }
-    private void UseParticles() 
+    private void UseParticles(bool IsPlayer) 
     {
         ParticleSystem particle = Instantiate(particleSystem, transform.position, transform.rotation);
         particle.Play();
-        AudioManager.instance.Play("Exp3");
+        if (IsPlayer)
+            AudioManager.instance.Play("Exp3");
         Destroy(particle.gameObject, particle.main.duration);
     }
 }

@@ -38,12 +38,13 @@ public class UIButtonAnimations : MonoBehaviour
         if (isRotating)
             return;
         
-        StartCoroutine(RotationCoroutine(rotationAxis, rotationAngle, rotationSpeed));
+        StartCoroutine(RotationCoroutine(rotationAxis, rotationAngle, rotationSpeed / Time.timeScale));
     }
 
     IEnumerator ChangeSizeCoroutine(float size, float changeSpeed)
     {
         Vector3 sizeVector = new Vector3(size, size);
+        changeSpeed = changeSpeed / Time.timeScale;
         float totalSizeChange = 0;
         float diff = Mathf.Abs(transform.localScale.x - sizeVector.x);
 

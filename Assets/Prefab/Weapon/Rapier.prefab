@@ -344,7 +344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 1
   PunchForce: 3
-  Sound: Explosion
+  Sound: Rapier
   idleAngle: {x: 0, y: 0, z: -50}
   attackSpeedModifier: 0.4
   Hand: {fileID: 402724760065285396}

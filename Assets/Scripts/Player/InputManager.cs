@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     public static InputSystem inputSystem;
+
     private static InputManager instance;
     public static InputManager Instance
     {
@@ -25,7 +26,6 @@ public class InputManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            inputSystem = new InputSystem();
             SetupInputSystem();
             DontDestroyOnLoad(this.gameObject);
         }
@@ -51,9 +51,7 @@ public class InputManager : MonoBehaviour
     private static void SetupInputSystem()
     {
         inputSystem = new InputSystem();
-        inputSystem.Enable();
-        inputSystem.Player.Attack.Enable();
-        inputSystem.Player.Dodge.Enable();
+        inputSystem.Player.Enable();
     }
 
     public Vector2 GetInputVector() 
@@ -73,5 +71,11 @@ public class InputManager : MonoBehaviour
     public Vector3 GetMousePosition() 
     { 
         return Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    }
+
+    public void SwitchActionMap(InputActionMap actionMap) 
+    {
+        inputSystem.Disable();
+        actionMap.Enable();
     }
 }

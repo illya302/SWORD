@@ -9,20 +9,20 @@ public class UpgradeGenerator : MonoBehaviour
 
     private static UpgradeGenerator instance;
 
-    [SerializeField] private static int speedStartValue;
-    [SerializeField] private static int reloadStartValue;
-    [SerializeField] private static int dodgeForceStartValue;
-    [SerializeField] private static int helthPosionStartValue;
+    private static float speedStartValue = 0.5f;
+    private static float reloadStartValue = 0.1f;
+    private static float dodgeForceStartValue = 0.5f;
+    private static int helthPosionStartValue = 5;
 
-    [SerializeField] private static int speedStartPrice = 10;
-    [SerializeField] private static int reloadStartPrice = 10;
-    [SerializeField] private static int dodgeForceStartPrice = 10;
-    [SerializeField] private static int helthPosionStartPrice = 10;
+    private static int speedStartPrice = 10;
+    private static int reloadStartPrice = 10;
+    private static int dodgeForceStartPrice = 10;
+    private static int helthPosionStartPrice = 10;
 
-    private static int upgradeSpeedTier = 0;
-    private static int upgradeReloadTier = 0;
-    private static int upgradeDodgeForceTier = 0;
-    private static int upgradeHelthPosionTier = 0;
+    private int upgradeSpeedTier = 0;
+    private int upgradeReloadTier = 0;
+    private int upgradeDodgeForceTier = 0;
+    private int upgradeHelthPosionTier = 0;
     public static UpgradeGenerator Instance
     {
         get
@@ -39,7 +39,8 @@ public class UpgradeGenerator : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            SetupUpgradeGenerator();
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -54,9 +55,18 @@ public class UpgradeGenerator : MonoBehaviour
             GameObject gameObj = new GameObject();
             gameObj.name = "UpgradeGenerator";
             instance = gameObj.AddComponent<UpgradeGenerator>();
-            DontDestroyOnLoad(gameObj);
+            Instance.SetupUpgradeGenerator();
+            //DontDestroyOnLoad(gameObj);
         }
     }
+    private void SetupUpgradeGenerator()
+    {
+        upgradeSpeedTier = 0;
+        upgradeReloadTier = 0;
+        upgradeDodgeForceTier = 0;
+        upgradeHelthPosionTier = 0;
+    }
+
     public static void GenerateUpgrades() 
     {
         for(int i = 0; i < 8; i++) 
@@ -65,7 +75,7 @@ public class UpgradeGenerator : MonoBehaviour
             upgrades.Add(upgrade);
         }
     }
-    private static Upgrade GenerateUpgrade() 
+    public static Upgrade GenerateUpgrade() 
     { 
         int upgradeIndex = UnityEngine.Random.Range(0, Enum.GetNames(typeof(Upgrade.UpgradeType)).Length);
         string type = Enum.GetNames(typeof(Upgrade.UpgradeType))[upgradeIndex];
@@ -75,23 +85,23 @@ public class UpgradeGenerator : MonoBehaviour
         switch (type)
         {
             case "HealPotion":
-                upgradeHelthPosionTier += 1;
-                upgrade = new Upgrade(Upgrade.UpgradeType.HealPotion, helthPosionStartValue, helthPosionStartPrice * upgradeHelthPosionTier);
+                Instance.upgradeHelthPosionTier += 1;
+                upgrade = new Upgrade(Upgrade.UpgradeType.HealPotion, helthPosionStartValue, helthPosionStartPrice * Instance.upgradeHelthPosionTier);
                 break;
                
             case "HeroSpeed":
-                upgradeSpeedTier += 1;
-                upgrade = new Upgrade(Upgrade.UpgradeType.HeroSpeed, speedStartValue, speedStartPrice * upgradeSpeedTier);
+                Instance.upgradeSpeedTier += 1;
+                upgrade = new Upgrade(Upgrade.UpgradeType.HeroSpeed, speedStartValue, speedStartPrice * Instance.upgradeSpeedTier);
                 break;
 
             case "DodgeForce":
-                upgradeDodgeForceTier += 1;
-                upgrade = new Upgrade(Upgrade.UpgradeType.DodgeForce, dodgeForceStartValue, dodgeForceStartPrice * upgradeDodgeForceTier);
+                Instance.upgradeDodgeForceTier += 1;
+                upgrade = new Upgrade(Upgrade.UpgradeType.DodgeForce, dodgeForceStartValue, dodgeForceStartPrice * Instance.upgradeDodgeForceTier);
                 break;
 
             case "ReloadTime":
-                upgradeReloadTier += 1;
-                upgrade = new Upgrade(Upgrade.UpgradeType.ReloadTime, reloadStartValue, reloadStartPrice * upgradeReloadTier);
+                Instance.upgradeReloadTier += 1;
+                upgrade = new Upgrade(Upgrade.UpgradeType.ReloadTime, reloadStartValue, reloadStartPrice * Instance.upgradeReloadTier);
                 break;
         }
         return upgrade;

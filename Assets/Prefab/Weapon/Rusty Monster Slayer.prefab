@@ -199,7 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 2
   PunchForce: 20
-  Sound: Explosion
+  Sound: Monsterslayer
   idleAngle: {x: 0, y: 0, z: 114.966}
   attackSpeedModifier: 1.8
   Hand: {fileID: 5063838007705836531}
@@ -352,7 +352,7 @@ Transform:
   m_GameObject: {fileID: 8814760320339118105}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 4.68, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -404,7 +404,7 @@ TrailRenderer:
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 4
+    widthMultiplier: 1
     widthCurve:
       serializedVersion: 2
       m_Curve:

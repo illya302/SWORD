@@ -40,6 +40,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "OpenUpgradeMenu",
+                    "type": "Button",
+                    "id": "75fe1f6b-cfad-4c2a-bd8f-b54aabad7791",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -172,6 +181,45 @@
                     "processors": "",
                     "groups": "",
                     "action": "PickUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0d9844d3-0c05-4ee8-ac73-c4471a60d053",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenUpgradeMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UpgradeMenu",
+            "id": "43ffc597-f5e4-44fa-9eac-e8079db20009",
+            "actions": [
+                {
+                    "name": "CloseUpgradeMenu",
+                    "type": "Button",
+                    "id": "ca42e7ef-c4c0-4183-8aeb-46ae58280c9d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "269bc064-88c1-4f4f-a876-6becd9162461",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CloseUpgradeMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

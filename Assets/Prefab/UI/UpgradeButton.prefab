@@ -150,6 +150,7 @@ GameObject:
   - component: {fileID: 5404263694250251818}
   - component: {fileID: 8713799351303884025}
   - component: {fileID: 1978720091576695693}
+  - component: {fileID: 7728854078348553043}
   m_Layer: 5
   m_Name: UpgradeButton
   m_TagString: Untagged
@@ -358,6 +359,22 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7728854078348553043}
+          m_TargetAssemblyTypeName: ButtonLogic, Assembly-CSharp
+          m_MethodName: OnClick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 1
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!82 &1978720091576695693
 AudioSource:
   m_ObjectHideFlags: 0
@@ -454,6 +471,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7728854078348553043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5612493985476500031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 699e9778bacd6c046b4d04889febdeab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6330874605683992255
 GameObject:
   m_ObjectHideFlags: 0

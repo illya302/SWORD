@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -54,6 +55,16 @@ public class BuffManager : MonoBehaviour
         effect.GetComponent<VisualEffect>().Play();
         StartCoroutine(instance.IntervalDamage(target, damage, quantity, timeInterval, effect.GetComponent<VisualEffect>()));
     }
+    public void HolyBuff(IDamageable target, int damage, int quantity, float timeInterval, GameObject visualEffect)
+    {
+        if (target is Tree)
+            return;
+        var targ = target as MonoBehaviour;
+        GameObject effect = Instantiate(visualEffect, targ.transform);
+        //Destroy(effect, timeInterval * quantity);
+        effect.GetComponent<VisualEffect>().Play();
+        StartCoroutine(instance.IntervalDamage(target, damage, quantity, timeInterval, effect.GetComponent<VisualEffect>()));
+    }
     private IEnumerator IntervalDamage(IDamageable target, int damage, int quantity, float timeInterval, VisualEffect effect)
     {
         void Target_OnDeath()
@@ -68,12 +79,12 @@ public class BuffManager : MonoBehaviour
             var currentTime = timeInterval;
             while (currentTime > 0)
             {
-                if (effect.gameObject.transform.parent == null)
+                if (effect != null && effect.gameObject.transform.parent == null)
                     break;
                 currentTime -= Time.deltaTime;
                 yield return null;
             }
-            if (effect.gameObject.transform.parent == null)
+            if (effect != null && effect.gameObject.transform.parent == null)
                 break;
             target.TakeDamage(damage);
             quantity -= 1;
@@ -83,11 +94,14 @@ public class BuffManager : MonoBehaviour
 
     private IEnumerator StopEffect(VisualEffect effect) 
     {
-        effect.Stop();
-        while (effect.aliveParticleCount > 0) 
+        if (effect != null) 
         {
-            yield return null;
+            effect.Stop();
+            while (effect.aliveParticleCount > 0)
+            {
+                yield return null;
+            }
+            Destroy(effect.gameObject);
         }
-        Destroy(effect.gameObject);
     }
 }

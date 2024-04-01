@@ -11,7 +11,7 @@ public class Player: MonoBehaviour
     [SerializeField] public int healthPoints;
     [SerializeField] public int experience;
     [SerializeField] public float speed;
-    [SerializeField] public int dodgeForce;
+    [SerializeField] public float dodgeForce;
     [SerializeField] public float defaultReloadTime;
     [HideInInspector] public float reloadTime;
 
@@ -115,12 +115,12 @@ public class Player: MonoBehaviour
     public void TakeExperience(int i)
     {
         experience += i;
-        for (int d = 0; d < i; d++) 
-        {
-            speed += 0.01f;
-            if (defaultReloadTime > 0.5f)
-                defaultReloadTime -= 0.01f;
-        }
+        //for (int d = 0; d < i; d++) 
+        //{
+        //    speed += 0.01f;
+        //    if (defaultReloadTime > 0.5f)
+        //        defaultReloadTime -= 0.01f;
+        //}
     }
 
     private IEnumerator AttackCooldown() 

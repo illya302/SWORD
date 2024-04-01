@@ -62,6 +62,15 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenUpgradeMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""75fe1f6b-cfad-4c2a-bd8f-b54aabad7791"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -196,6 +205,45 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""PickUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0d9844d3-0c05-4ee8-ac73-c4471a60d053"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenUpgradeMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""UpgradeMenu"",
+            ""id"": ""43ffc597-f5e4-44fa-9eac-e8079db20009"",
+            ""actions"": [
+                {
+                    ""name"": ""CloseUpgradeMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""ca42e7ef-c4c0-4183-8aeb-46ae58280c9d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""269bc064-88c1-4f4f-a876-6becd9162461"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CloseUpgradeMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -208,6 +256,10 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
         m_Player_PickUp = m_Player.FindAction("PickUp", throwIfNotFound: true);
+        m_Player_OpenUpgradeMenu = m_Player.FindAction("OpenUpgradeMenu", throwIfNotFound: true);
+        // UpgradeMenu
+        m_UpgradeMenu = asset.FindActionMap("UpgradeMenu", throwIfNotFound: true);
+        m_UpgradeMenu_CloseUpgradeMenu = m_UpgradeMenu.FindAction("CloseUpgradeMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -273,6 +325,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_Dodge;
     private readonly InputAction m_Player_PickUp;
+    private readonly InputAction m_Player_OpenUpgradeMenu;
     public struct PlayerActions
     {
         private @InputSystem m_Wrapper;
@@ -281,6 +334,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
         public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
         public InputAction @PickUp => m_Wrapper.m_Player_PickUp;
+        public InputAction @OpenUpgradeMenu => m_Wrapper.m_Player_OpenUpgradeMenu;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -302,6 +356,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @PickUp.started += instance.OnPickUp;
             @PickUp.performed += instance.OnPickUp;
             @PickUp.canceled += instance.OnPickUp;
+            @OpenUpgradeMenu.started += instance.OnOpenUpgradeMenu;
+            @OpenUpgradeMenu.performed += instance.OnOpenUpgradeMenu;
+            @OpenUpgradeMenu.canceled += instance.OnOpenUpgradeMenu;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -318,6 +375,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @PickUp.started -= instance.OnPickUp;
             @PickUp.performed -= instance.OnPickUp;
             @PickUp.canceled -= instance.OnPickUp;
+            @OpenUpgradeMenu.started -= instance.OnOpenUpgradeMenu;
+            @OpenUpgradeMenu.performed -= instance.OnOpenUpgradeMenu;
+            @OpenUpgradeMenu.canceled -= instance.OnOpenUpgradeMenu;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -335,11 +395,62 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // UpgradeMenu
+    private readonly InputActionMap m_UpgradeMenu;
+    private List<IUpgradeMenuActions> m_UpgradeMenuActionsCallbackInterfaces = new List<IUpgradeMenuActions>();
+    private readonly InputAction m_UpgradeMenu_CloseUpgradeMenu;
+    public struct UpgradeMenuActions
+    {
+        private @InputSystem m_Wrapper;
+        public UpgradeMenuActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
+        public InputAction @CloseUpgradeMenu => m_Wrapper.m_UpgradeMenu_CloseUpgradeMenu;
+        public InputActionMap Get() { return m_Wrapper.m_UpgradeMenu; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UpgradeMenuActions set) { return set.Get(); }
+        public void AddCallbacks(IUpgradeMenuActions instance)
+        {
+            if (instance == null || m_Wrapper.m_UpgradeMenuActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_UpgradeMenuActionsCallbackInterfaces.Add(instance);
+            @CloseUpgradeMenu.started += instance.OnCloseUpgradeMenu;
+            @CloseUpgradeMenu.performed += instance.OnCloseUpgradeMenu;
+            @CloseUpgradeMenu.canceled += instance.OnCloseUpgradeMenu;
+        }
+
+        private void UnregisterCallbacks(IUpgradeMenuActions instance)
+        {
+            @CloseUpgradeMenu.started -= instance.OnCloseUpgradeMenu;
+            @CloseUpgradeMenu.performed -= instance.OnCloseUpgradeMenu;
+            @CloseUpgradeMenu.canceled -= instance.OnCloseUpgradeMenu;
+        }
+
+        public void RemoveCallbacks(IUpgradeMenuActions instance)
+        {
+            if (m_Wrapper.m_UpgradeMenuActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IUpgradeMenuActions instance)
+        {
+            foreach (var item in m_Wrapper.m_UpgradeMenuActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_UpgradeMenuActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public UpgradeMenuActions @UpgradeMenu => new UpgradeMenuActions(this);
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnDodge(InputAction.CallbackContext context);
         void OnPickUp(InputAction.CallbackContext context);
+        void OnOpenUpgradeMenu(InputAction.CallbackContext context);
+    }
+    public interface IUpgradeMenuActions
+    {
+        void OnCloseUpgradeMenu(InputAction.CallbackContext context);
     }
 }

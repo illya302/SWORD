@@ -421,7 +421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 1
   PunchForce: 4
-  Sound: Hit1
+  Sound: Whisperingdeath
   idleAngle: {x: 0, y: 0, z: -30}
   attackSpeedModifier: 1
   Hand: {fileID: 4808585042126282493}

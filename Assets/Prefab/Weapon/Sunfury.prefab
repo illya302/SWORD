@@ -387,8 +387,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 1
   PunchForce: 10
-  Sound: Explosion
-  idleAngle: {x: 0, y: 0, z: -30}
+  Sound: Sunfury
+  idleAngle: {x: 0, y: 0, z: 70}
   attackSpeedModifier: 1
   Hand: {fileID: 3323228645315743876}
   Trail: {fileID: 0}

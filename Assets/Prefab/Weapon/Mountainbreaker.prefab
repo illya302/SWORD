@@ -103,7 +103,7 @@ Transform:
   m_GameObject: {fileID: 2992633933638938217}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: -0, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -155,7 +155,7 @@ TrailRenderer:
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 4
+    widthMultiplier: 1
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -421,7 +421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 5
   PunchForce: 20
-  Sound: Explosion
+  Sound: Mountainbreaker
   idleAngle: {x: 0, y: 0, z: 114.996}
   attackSpeedModifier: 2
   Hand: {fileID: 9211680511529935201}

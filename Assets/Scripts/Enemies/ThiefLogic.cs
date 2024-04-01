@@ -53,6 +53,7 @@ public class ThiefLogic : MonoBehaviour, ICreature
     [SerializeField] private AudioClip thiefHit;
     [SerializeField] private AudioClip thiefDeath;
     [SerializeField] private AudioClip thiefAttack;
+    [SerializeField] private AudioClip thiefSteal;
 
     private bool IsReayToStrike = true;
     private float timeSinceAttack = 0;
@@ -80,12 +81,16 @@ public class ThiefLogic : MonoBehaviour, ICreature
     public void TakeHeal(int heal) 
     {
         healthPoints += heal;
+        audio.clip = thiefSteal;
+        audio.Play();
     }
     public void TakeExperience(int exp)
     {
         experienceCount += exp;
         Upgrade(exp);
         OnTakeExp?.Invoke();
+        audio.clip = thiefSteal;
+        audio.Play();
     }
 
     public void TakeDamage(int damage)
