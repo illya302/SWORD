@@ -1,29 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class UIPauseMenu: UIWindow
 {
-    private GameManager gameManager;
-
-    [Range(0f, 1f)]
-    [SerializeField] float pauseTimeScale;
-
+    private Action OnResume;
     private void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        OnResume += SceneController.Instance.CloseUpgradeMenu;
     }
-
     public void ResumeButtonClick()
     {
-        SetWindowState(false);
-        gameManager.SetTimeScale(pauseTimeScale);
+        OnResume?.Invoke();
+        //SetWindowState(false);
         Debug.Log("ResumeButtonClick");
     }
 
     public void PauseButtonClick()
     {
-        gameManager.SetTimeScale(1f);
+        Time.timeScale = 0f;
         SetWindowState(true);
         Debug.Log("PauseButtonClick");
     }

@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class UIButtonAnimations : MonoBehaviour
 {
-
     Coroutine sizeChangeCoroutine;
 
     bool isRotating;
@@ -37,7 +37,7 @@ public class UIButtonAnimations : MonoBehaviour
     {
         if (isRotating)
             return;
-        
+
         StartCoroutine(RotationCoroutine(rotationAxis, rotationAngle, rotationSpeed / Time.timeScale));
     }
 
@@ -67,7 +67,6 @@ public class UIButtonAnimations : MonoBehaviour
     IEnumerator RotationCoroutine(Vector3 rotationAxis, float rotationAngle, float rotationSpeed)
     {
         isRotating = true;
-
         float totalRotationDeg = 0;
 
         while (totalRotationDeg <= rotationAngle)
@@ -81,5 +80,11 @@ public class UIButtonAnimations : MonoBehaviour
         transform.rotation = new Quaternion(0,0,0,0);
 
         isRotating = false;
+    }
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+        transform.localScale = Vector3.one;
+        transform.localRotation = Quaternion.identity;
     }
 }

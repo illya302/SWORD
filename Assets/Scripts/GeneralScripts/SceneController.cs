@@ -84,6 +84,18 @@ public class SceneController : MonoBehaviour
         InputManager.Instance.SwitchActionMap(InputManager.inputSystem.Player);
     }
 
+    public void CloseUpgradeMenu() 
+    {
+        if (currentCoroutine != null)
+        {
+            StopCoroutine(currentCoroutine);
+            currentCoroutine = null;
+        }
+        currentCoroutine = StartCoroutine(SwitchTimeScale());
+        upgradeMenu.SetActive(false);
+        InputManager.Instance.SwitchActionMap(InputManager.inputSystem.Player);
+    }
+
     private IEnumerator SwitchTimeScale() 
     {
         currentTime = pauseEffectSpeed - currentTime;
