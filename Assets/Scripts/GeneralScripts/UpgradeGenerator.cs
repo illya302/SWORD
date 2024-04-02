@@ -14,10 +14,10 @@ public class UpgradeGenerator : MonoBehaviour
     private static float dodgeForceStartValue = 0.5f;
     private static int helthPosionStartValue = 5;
 
-    private static int speedStartPrice = 10;
-    private static int reloadStartPrice = 10;
-    private static int dodgeForceStartPrice = 10;
-    private static int helthPosionStartPrice = 10;
+    private static int speedStartPrice = 5;
+    private static int reloadStartPrice = 5;
+    private static int dodgeForceStartPrice = 5;
+    private static int helthPosionStartPrice = 5;
 
     private int upgradeSpeedTier = 0;
     private int upgradeReloadTier = 0;

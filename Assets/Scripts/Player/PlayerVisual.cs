@@ -11,6 +11,7 @@ public class PlayerVisual : MonoBehaviour
     [SerializeField] private Light2D light;
     private static GameObject activeWeapon;
     private int healthPoints;
+    private bool IsEnableRotation = true;
 
     private const string IS_RUNNING = "IsRunning";
 
@@ -24,6 +25,7 @@ public class PlayerVisual : MonoBehaviour
     private void Start()
     {
         healthPoints = pl.healthPoints;
+        EventManager.Instance.OnAttack.AddListener(SwitchRotationAvailability);
     }
 
     private void Update()
@@ -33,7 +35,8 @@ public class PlayerVisual : MonoBehaviour
 
     private void SetPlayerVisual() 
     {
-        SetPlayerRotation();
+        if(IsEnableRotation)
+            SetPlayerRotation();
         SetAnimatorRun();
         SetPlayerTakeDamageEffect();
     }
@@ -83,5 +86,10 @@ public class PlayerVisual : MonoBehaviour
         activeWeapon.transform.rotation = Quaternion.Lerp(activeWeapon.transform.rotation, Quaternion.Euler(0, rotation, angle), Time.deltaTime * 5);//0.02
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, rotation, 0), Time.deltaTime*10);//0.05
         light.transform.rotation = Quaternion.Euler(0, rotation, 0);
+    }
+
+    private void SwitchRotationAvailability(bool IsAvailable) 
+    {
+        IsEnableRotation = IsAvailable;
     }
 }

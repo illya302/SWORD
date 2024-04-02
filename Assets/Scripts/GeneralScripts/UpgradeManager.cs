@@ -53,6 +53,8 @@ public class UpgradeManager : MonoBehaviour
 
     public bool UpgradePlayer(Upgrade upgrade) 
     {
+        if (player == null)
+            player = GameObject.Find("Hero").GetComponent<Player>();
         if (upgrade._price > player.experience)
         {
             return false;
@@ -68,7 +70,8 @@ public class UpgradeManager : MonoBehaviour
                 player.healthPoints += (int)upgrade._value;
                 break;
             case Upgrade.UpgradeType.ReloadTime:
-                player.reloadTime -= upgrade._value;
+                if (player.defaultReloadTime > 0)
+                    player.defaultReloadTime -= upgrade._value;
                 break;
             case Upgrade.UpgradeType.DodgeForce:
                 player.dodgeForce += upgrade._value;

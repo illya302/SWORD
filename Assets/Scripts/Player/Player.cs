@@ -82,7 +82,6 @@ public class Player: MonoBehaviour
         {
             OnDeath.Invoke();
             Destroy(gameObject);
-            SceneManager.LoadScene(0);
         }
     }
 

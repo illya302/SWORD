@@ -1188,7 +1188,7 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 1413377433}
+  m_LookAt: {fileID: 0}
   m_Follow: {fileID: 217340074}
   m_Lens:
     FieldOfView: 120.73
@@ -9847,6 +9847,53 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2440534da2beccd49b443f8395bd4a82, type: 3}
+--- !u!1 &558049152
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 558049153}
+  - component: {fileID: 558049154}
+  m_Layer: 0
+  m_Name: EventManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &558049153
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558049152}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1185335092}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &558049154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558049152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f0138c845c21b945bf405c6f71a7f70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnAttack:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &558638923 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1395281348340102642, guid: 40ed1c55df27b19428f037240d68a980, type: 3}
@@ -21211,6 +21258,7 @@ Transform:
   m_Children:
   - {fileID: 1525395791}
   - {fileID: 1182141808}
+  - {fileID: 558049153}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1188919971
@@ -25026,11 +25074,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2790708765373797621, guid: 5cf4e3a03139bdc459074827c2c2850e, type: 3}
   m_PrefabInstance: {fileID: 694421597}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1413377433 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3366511120213346425, guid: bcdf614110812f7449386707db6d31db, type: 3}
-  m_PrefabInstance: {fileID: 1639974816}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1413377436 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3437807778153143838, guid: bcdf614110812f7449386707db6d31db, type: 3}
@@ -26776,9 +26819,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba65c88c28283ab48a3f7f314433ccab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseEffectSpeed: 2
+  pauseEffectSpeed: 0.5
   pauseScale: 0.001
   upgradeMenu: {fileID: 449999477}
+  FadeInTime: 0
+  FadeOutTime: 3
 --- !u!4 &1526370385 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5535063421147124166, guid: 1f83a05a3caf64f4381f65c980613a35, type: 3}
